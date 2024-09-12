@@ -20,7 +20,7 @@ const TodoList = () => {
   // Fetch todos from an API
   const fetchTodos = async () => {
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=4');
+      const response = await fetch('http://localhost:5000/todos');
       const todos = await response.json();
       setTasks(todos);
       setIsLoading(false);
@@ -47,7 +47,7 @@ const TodoList = () => {
     };
 
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
+      const response = await fetch('http://localhost:5000/todos', {
         method: 'POST',
         body: JSON.stringify(newTask),
         headers: {
@@ -88,29 +88,45 @@ const TodoList = () => {
 
   // Update a task
   const handleUpdateTask = async () => {
-    if (inputValue.trim() === '') {
+    if (inputValue.trim() === '' || !editTaskId) {
       return;
     }
-
+  
+    // Find the task you're editing to retain its completed status
+    const taskToEdit = tasks.find(task => task.id === editTaskId);
+  
+    if (!taskToEdit) {
+      console.log('Task to edit not found');
+      return;
+    }
+  
     const updatedTask = {
       title: inputValue,
-      completed: false
+      completed: taskToEdit.completed // Retain the current completion status
     };
-
+  
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${editTaskId}`, {
+      // Make sure the URL is properly formatted
+      const response = await fetch(`http://localhost:5000/todos/${editTaskId}`, {
         method: 'PUT',
         body: JSON.stringify(updatedTask),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update task');
+      }
+  
       const updatedTaskData = await response.json();
+      
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
-          task.id === editTaskId ? { ...task, title: updatedTaskData.title } : task
+          task.id === editTaskId ? { ...task, title: updatedTaskData.title, completed: updatedTaskData.completed } : task
         )
       );
+  
       setInputValue('');
       setEditTaskId(null);
       toast.success('Task updated successfully');
@@ -119,6 +135,7 @@ const TodoList = () => {
       toast.error('Error updating task');
     }
   };
+  
 
   // Mark all tasks as completed
   const handleCompleteAll = () => {
@@ -160,7 +177,7 @@ const TodoList = () => {
       <ToastContainer />
       <div className="todo-app">
         <h2>
-          <img src={todoImage} alt="todo-image" /> Todo List
+        <img src={todoImage} alt="todo-image" /> Task List
         </h2>
         <div className="row">
           <i className="fas fa-list-check"></i>
@@ -168,7 +185,7 @@ const TodoList = () => {
             type="text"
             className="add-task"
             id="add"
-            placeholder="Add your todo"
+            placeholder="Add your task"
             autoFocus
             value={inputValue}
             onChange={handleInputChange}
