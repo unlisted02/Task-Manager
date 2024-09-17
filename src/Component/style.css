@@ -4,6 +4,20 @@
     font-family: sans-serif;
     box-sizing: border-box;
 } 
+/* Styles for screens wider than 600px */
+@media (min-width: 600px) {
+  .example {
+    font-size: 1.5em;
+  }
+}
+
+/* Styles for screens smaller than 600px */
+@media (max-width: 599px) {
+  .example {
+    font-size: 1em;
+  }
+}
+
 
 /* container */
 .container{

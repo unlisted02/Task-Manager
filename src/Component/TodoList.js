@@ -74,10 +74,29 @@ const TodoList = () => {
   };
 
   // Delete a task
-  const handleDeleteTask = (taskId) => {
+  // Delete a task
+const handleDeleteTask = async (taskId) => {
+  try {
+    // Make a DELETE request to the API to remove the task from the database
+    const response = await fetch(`http://localhost:5000/todos/${taskId}`, {
+      method: 'DELETE',
+    });
+
+    // Check if the response was successful
+    if (!response.ok) {
+      throw new Error('Failed to delete task');
+    }
+
+    // Update the local state to remove the deleted task
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+
     toast.success('Task deleted successfully');
-  };
+  } catch (error) {
+    console.log('Error deleting task:', error);
+    toast.error('Error deleting task');
+  }
+};
+
 
   // Edit a task
   const handleEditTask = (taskId) => {
@@ -144,10 +163,29 @@ const TodoList = () => {
     );
   };
 
-  // Clear completed tasks
-  const handleClearCompleted = () => {
-    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
-  };
+ // Clear completed tasks
+const handleClearCompleted = async () => {
+  const completedTasks = tasks.filter((task) => task.completed);
+
+  for (const task of completedTasks) {
+    try {
+      const response = await fetch(`http://localhost:5000/todos/${task.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete task with ID: ${task.id}`);
+      }
+    } catch (error) {
+      console.log('Error deleting task:', error);
+      toast.error(`Failed to delete task: ${task.title}`);
+    }
+  }
+
+  setTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
+  toast.success('Completed tasks cleared successfully');
+};
+
 
   // Handle filter change
   const handleFilterChange = (filterType) => {

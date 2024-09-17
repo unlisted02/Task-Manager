@@ -1,0 +1,25 @@
+/* Home.css */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-50px);
+    }
+    60% {
+      transform: translateY(-55px);
+    }
+  }
+  
+  .bounce {
+    animation: bounce 4s ease-in-out;
+  }
+  
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure the container takes up at least the full viewport height */
+  }
+  

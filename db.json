@@ -1,9 +1,9 @@
 {
   "todos": [
     {
+      "id": "1",
       "title": "Create a task",
-      "completed": false,
-      "id": "1"
+      "completed": true
     },
     {
       "id": "2",
@@ -19,11 +19,6 @@
       "id": "4",
       "title": "Present the project",
       "completed": false
-    },
-    {
-      "title": "Dutty Hands",
-      "completed": false,
-      "id": "f6f3"
     }
   ]
 }
