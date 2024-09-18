@@ -74,7 +74,6 @@ const TodoList = () => {
   };
 
   // Delete a task
-  // Delete a task
 const handleDeleteTask = async (taskId) => {
   try {
     // Make a DELETE request to the API to remove the task from the database
