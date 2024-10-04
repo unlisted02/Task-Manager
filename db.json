@@ -1,24 +1,24 @@
 {
-  "todos": [
-    {
-      "id": "1",
-      "title": "Create a task",
-      "completed": true
-    },
-    {
-      "id": "2",
-      "title": "Complete the job",
-      "completed": false
-    },
-    {
-      "title": "Host the system",
-      "completed": false,
-      "id": "3"
-    },
-    {
-      "id": "4",
-      "title": "Present the project",
-      "completed": false
-    }
-  ]
-}
+    "todos": [
+      {
+        "id": "1",
+        "title": "Create a task",
+        "completed": true
+      },
+      {
+        "id": "2",
+        "title": "Complete the job",
+        "completed": false
+      },
+      {
+        "title": "Host the system",
+        "completed": false,
+        "id": "3"
+      },
+      {
+        "id": "4",
+        "title": "Present the project",
+        "completed": false
+      }
+    ]
+  }

@@ -205,7 +205,7 @@ const handleClearCompleted = async () => {
 
   // Display loading message while data is being fetched
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading, please wait..</div>;
   }
 
   // Render the todo list
@@ -234,7 +234,7 @@ const handleClearCompleted = async () => {
 
         <div className="mid">
           <i className="fas fa-check-double"></i>
-          <p id="complete-all" onClick={handleCompleteAll}>
+          <p id="complete-all" nClick={handleCompleteAll}>
             Complete all tasks
           </p>
           <p id="clear-all" onClick={handleClearCompleted}>
