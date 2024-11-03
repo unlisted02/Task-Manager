@@ -5,7 +5,7 @@ This is a simple Todo List application built using React. It allows users to add
 
 
 ...Run first >>> json-server --watch db.json --port 5000
-             >>> npm start
+             
              
 ...Open new terminal >>> npm i
                      >>> npm start
