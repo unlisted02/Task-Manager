@@ -3,14 +3,14 @@
 
 This is a simple Todo List application built using React. It allows users to add, edit, and delete tasks, mark tasks as completed, and filter tasks based on their completion status.
 
-... clone the repository >>> git clone https://github.com/unlisted02/Task-Manager.git
-                         >>> cd Task-Manager
+- clone the repository >>> git clone https://github.com/unlisted02/Task-Manager.git
+-  cd Task-Manager
 
-...Run first >>> json-server --watch db.json --port 5000
+- Run first >>> json-server --watch db.json --port 5000
              
              
-...Open new terminal >>> npm i
-                     >>> npm start
+- Open new terminal >>> npm i
+- npm start
 
 <<< Enjoy! >>>                                  
 
